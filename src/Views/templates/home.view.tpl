@@ -4,7 +4,7 @@
     <div class="product" data-productId="{{productId}}">
         <img src="{{productImgUrl}}" alt="{{productName}}">
         <h2>{{productName}}</h2>
-        <p>productDescription</p>
+        <p>{{productDescription}}</p>
         <span class="price">{{productPrice}}</span>
         <button class="add-to-cart">Agregar Al Carrito</button>
     </div>
@@ -16,19 +16,19 @@
     <div class="product" data-productId="{{productId}}">
         <img src="{{productImgUrl}}" alt="{{productName}}">
         <h2>{{productName}}</h2>
-        <p>productDescription</p>
+        <p>{{productDescription}}</p>
         <span class="price">{{productPrice}}</span>
         <button class="add-to-cart">Agregar Al Carrito</button>
     </div>
     {{endfor productsHighlighted}}
 </div>
 <h1>Novedades</h1>
-<div class="products-list">
+<div class="product-list">
     {{foreach productsNew}}
     <div class="product" data-productId="{{productId}}">
         <img src="{{productImgUrl}}" alt="{{productName}}">
         <h2>{{productName}}</h2>
-        <p>productDescription</p>
+        <p>{{productDescription}}</p>
         <span class="price">{{productPrice}}</span>
         <button class="add-to-cart">Agregar Al Carrito</button>
     </div>

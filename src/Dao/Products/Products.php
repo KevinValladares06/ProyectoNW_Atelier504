@@ -2,11 +2,17 @@
 
 namespace Dao\Products;
 
-class Products
+use Dao\Table;
+
+class Products extends Table
 {
     public static function getFeaturedProducts()
     {
-        return [
+        $sqlstr = "SELECT p.productId, p.productName, p.productDescription, p.productPrice, p.productImgUrl, p.productStatus FROM products p INNER JOIN highlights h ON p.productId = h.productId WHERE h.highlightStart <= NOW() AND h.highlightEnd >= NOW()";
+        $params = [];
+        $registros = self::obtenerRegistros($sqlstr, $params);
+        return $registros;
+        /*return [
 
             [
                 "productId" => 1,
@@ -31,12 +37,16 @@ class Products
                 "productUnitPrice" => 70.00
             ],
 
-        ];
+        ];*/
     }
 
     public static function getNewProducts()
     {
-        return [
+        $sqlstr = "SELECT p.productId, p.productName, p.productDescription, p.productPrice, p.productImgUrl, p.productStatus FROM products p WHERE p.productStatus = 'ACT' ORDER BY p.productId DESC LIMIT 3";
+        $params = [];
+        $registros = self::obtenerRegistros($sqlstr, $params);
+        return $registros;
+        /*return [
             [
                 "productId" => 99,
                 "productName" => "Producto 99",
@@ -51,12 +61,16 @@ class Products
                 "productImgUrl" => "https://via.placeholder.com/150",
                 "productPrice" => 130.00
             ]
-        ];
+        ];*/
     }
 
     public static function getDailyDeals()
     {
-        return [
+        $sqlstr = "SELECT p.productId, p.productName, p.productDescription, s.salePrice as productPrice, p.productImgUrl, p.productStatus FROM products p INNER JOIN sales s ON p.productId = s.productId WHERE s.saleStart <= NOW() AND s.saleEnd >= NOW()";
+        $params = [];
+        $registros = self::obtenerRegistros($sqlstr, $params);
+        return $registros;
+        /*return [
             [
                 "productId" => 73,
                 "productName" => "Producto 73",
@@ -79,6 +93,6 @@ class Products
                 "productPrice" => 20.00
             ]
 
-        ];
+        ];*/
     }
 }
