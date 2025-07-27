@@ -32,6 +32,7 @@
         {{endfor PUBLIC_NAVIGATION}}
       </ul>
     </nav>
+    <span>{{if ~CART_ITEMS}}{{~CART_ITEMS}}{{endif ~CART_ITEMS}}</span>
   </header>
   <main>
   {{{page_content}}}

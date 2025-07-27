@@ -2,7 +2,7 @@
 
 namespace Controllers\Maintenance\Products;
 
-use Controllers\PublicController;
+use Controllers\PrivateController;
 use Dao\Products\Categories as CategoriesDAO;
 use Views\Renderer;
 
@@ -11,13 +11,14 @@ use Utilities\Validators;
 
 const LIST_URL = "index.php?page=Maintenance-Products-Categories";
 
-class Category extends PublicController
+class Category extends PrivateController
 {
     private array $viewData;
     private array $modes;
     private array $status;
     public function __construct()
     {
+        parent::__construct();
         $this->viewData = [
             "mode" => "",
             "id" => 0,

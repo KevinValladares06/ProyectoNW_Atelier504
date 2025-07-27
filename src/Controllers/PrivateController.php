@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP Version 7.2
  *
@@ -9,6 +10,7 @@
  * @version  CVS:1.0.0
  * @link     http://
  */
+
 namespace Controllers;
 
 /**
@@ -29,17 +31,17 @@ abstract class PrivateController extends PublicController
             $this->name,
             'CTR'
         );
-        if (!$isAuthorized){
+        if (!$isAuthorized) {
             throw new PrivateNoAuthException();
         }
     }
     private function _isAuthenticated()
     {
-        if (!\Utilities\Security::isLogged()){
+        if (!\Utilities\Security::isLogged()) {
             throw new PrivateNoLoggedException();
         }
     }
-    protected function isFeatureAutorized($feature) :bool
+    protected function isFeatureAutorized($feature): bool
     {
         return \Utilities\Security::isAuthorized(
             \Utilities\Security::getUserId(),
@@ -51,6 +53,5 @@ abstract class PrivateController extends PublicController
         parent::__construct();
         $this->_isAuthenticated();
         $this->_isAuthorized();
-
     }
 }

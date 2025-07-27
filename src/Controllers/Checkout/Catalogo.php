@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP Version 7.2
  * Checkout
@@ -10,7 +11,8 @@
  * @version  CVS:1.0.0
  * @link     http://url.com
  */
- namespace Controllers\Checkout;
+
+namespace Controllers\Checkout;
 
 // ---------------------------------------------------------------
 // Sección de imports
@@ -33,18 +35,18 @@ class Catalogo extends PrivateController
      *
      * @return void
      */
-    public function run():void
+    public function run(): void
     {
         // code
         $producto = \Dao\Productos::getAll();
         $carretilla = \Dao\Carretilla::getAll(\Utilities\Security::getUserId());
 
         $carrAssoc = array();
-        foreach($carretilla as $carr) {
+        foreach ($carretilla as $carr) {
             $carrAssoc[$carr["prdcod"]] = $carr;
         }
 
-        foreach($producto as $prod) {
+        foreach ($producto as $prod) {
             if (isset($carrAssoc[$prod["prdcod"]])) {
                 $prod["enCarretilla"] = true;
             } else {
@@ -54,5 +56,3 @@ class Catalogo extends PrivateController
         \Views\Renderer::render("abc", array("productos" => $producto));
     }
 }
-
-?>

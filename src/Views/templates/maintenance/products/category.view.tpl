@@ -37,7 +37,13 @@
         </div>
         <div class="row my-2">
             <label for="status" class="col-12 col-m-4 col-l-3">Status:</label>
-            <select {{if readonly}} readonly disabled {{endif readonly}} id="status" name="estado" >
+            {{if readonly}}
+                <input type="hidden" name="estado" value="{{estado}}" />
+                <select id="status" name="estado_tmp" disabled readonly>
+            {{endif readonly}} 
+            {{ifnot readonly}}
+                <select id="status" name="estado" >
+            {{endifnot readonly}}
                 <option value="ACT" {{selectedACT}}>Active</option>
                 <option value="INA" {{selectedINA}}>Disabled</option>
                 <option value="RTR" {{selectedRTR}}>Retired</option>

@@ -2,51 +2,47 @@
 
 namespace Utilities\Paypal;
 
-use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
-
 class PayPalOrder
 {
     private $_request;
     private $_body = array(
-        "intent"=>"CAPTURE",
+        "intent" => "CAPTURE",
         "purchase_units" => array(),
         "application_context" => array(
-            "cancel_url"=>"",
-            "return_url"=>""
+            "cancel_url" => "",
+            "return_url" => ""
         )
     );
     private $_purchaseUnitTemplate = array(
-        "reference_id"=>"",
+        "reference_id" => "",
         "custom_id" => "",
-        "amount"=>array(
-            "value"=>"0.00",
-            "currency_code"=>"USD",
+        "amount" => array(
+            "value" => "0.00",
+            "currency_code" => "USD",
             "breakdown" => array(
                 "item_total" => array(
                     "currency_code" => "USD",
                     "value" => "0.00"
-                    ),
+                ),
                 "shipping" => array(
                     "currency_code" => "USD",
                     "value" => "0.00"
-                    ),
+                ),
                 "handling" => array(
                     "currency_code" => "USD",
                     "value" => "0.00"
-                    ),
+                ),
                 "tax_total" => array(
                     "currency_code" => "USD",
                     "value" => "0.00"
-                    ),
+                ),
                 "shipping_discount" => array(
                     "currency_code" => "USD",
                     "value" => "0.00"
-                    ),
-                )
+                ),
+            )
         ),
-        "items" => array(
-
-        )
+        "items" => array()
     );
     private $_itemTemplate = array(
         "name" => "",
@@ -66,15 +62,11 @@ class PayPalOrder
         "category" => ""
     );
 
-    public function createOrder()
+    public function getOrder()
     {
-        $this->_request = new OrdersCreateRequest();
-        $this->_request->prefer("return=representation");
-        $this->_request->body = $this->_body;
-        $paypalClient = \Utilities\Paypal\PayPalClient::client();
-        $response = $paypalClient->execute($this->_request);
-        return array($response->result->links[1], $response);
+        return $this->_body;
     }
+
     public function addItem($name, $description, $sku, $price, $tax, $quantity, $category)
     {
         $newItem = $this->_itemTemplate;
@@ -103,7 +95,6 @@ class PayPalOrder
         $this->_body["purchase_units"][0]["amount"]["breakdown"]["item_total"]["value"] = (string) $itemTotal;
         $this->_body["purchase_units"][0]["amount"]["breakdown"]["tax_total"]["value"] = (string) $taxTotal;
         $this->_body["purchase_units"][0]["amount"]["value"] = (string) $total;
-
     }
 
     public function  __construct($referenceID, $cancel_url, $return_url)
@@ -114,5 +105,3 @@ class PayPalOrder
         $this->_body["application_context"]["return_url"] = $return_url;
     }
 }
-
-?>

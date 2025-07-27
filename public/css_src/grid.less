@@ -1,16 +1,16 @@
 .generateCols(@column, @break) when (@column > 0) {
-  @width : 100 / 12 * @column;
-
-  .col@{break}-@{column} {
+  @width : (100 / 12 * @column);
+  @prefix : e(@break);
+  .col@{prefix}-@{column} {
     flex-basis:~"@{width}%";
     max-width:~"@{width}%";
   }
 
-  .offset@{break}-@{column} {
+  .offset@{prefix}-@{column} {
     margin-left:~"@{width}%" !important;
   }
 
-  .order@{break}-@{column} {
+  .order@{prefix}-@{column} {
     order:~"@{column}";
   }
 
@@ -96,7 +96,7 @@
   width: 100%;
 }
 
-.generateCols(12, e(''));
+.generateCols(12, '');
 
 @media @md {
   .container-m {
@@ -109,7 +109,7 @@
     min-height: ~"calc(100vh - 134px)";
   }
 
-  .generateCols(12, e("-m"));
+  .generateCols(12, "-m");
 }
 
 @media @lg {
@@ -119,7 +119,7 @@
     margin-right: auto;
   }
 
-  .generateCols(12, e("-l"));
+  .generateCols(12, "-l");
 }
 
 @media @xl {
@@ -129,5 +129,5 @@
     margin-right: auto;
   }
 
-  .generateCols(12, e("-xl"));
+  .generateCols(12, "-xl");
 }

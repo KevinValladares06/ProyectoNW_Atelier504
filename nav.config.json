@@ -14,6 +14,21 @@
       "id": "Menu_Products",
       "nav_url": "index.php?page=Products_Products",
       "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;WW Productos"
+    },
+    {
+      "id": "Menu_Users",
+      "nav_url": "index.php?page=Users_Users",
+      "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;Usuarios"
+    },
+    {
+      "id": "Menu_Roles",
+      "nav_url": "index.php?page=Roles_Roles",
+      "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;Roles"
+    },
+    {
+      "id": "Menu_Funciones",
+      "nav_url": "index.php?page=Funciones_Funciones",
+      "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;Funciones"
     }
   ],
   "private": [
@@ -21,6 +36,11 @@
       "id":"Menu_PaymentCheckout",
       "nav_url": "index.php?page=Checkout_Checkout",
       "nav_label": "Carretilla de Compra"
+    },
+    {
+      "id":"Menu_Maintenance_Categories",
+      "nav_url": "index.php?page=Maintenance-Products-Categories",
+      "nav_label": "Categorías"
     }
   ]
 }

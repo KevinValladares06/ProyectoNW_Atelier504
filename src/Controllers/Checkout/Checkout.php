@@ -3,26 +3,112 @@
 namespace Controllers\Checkout;
 
 use Controllers\PublicController;
+use Dao\Cart\Cart;
+use Utilities\Security;
 
-class Checkout extends PublicController{
-    public function run():void
+class Checkout extends PublicController
+{
+    public function run(): void
     {
         $viewData = array();
+
+        // ✅ EDITADO: Aseguramos que carretilla no sea null
+        $carretilla = Cart::getAuthCart(Security::getUserId()) ?? [];
+
         if ($this->isPostBack()) {
-            $PayPalOrder = new \Utilities\Paypal\PayPalOrder(
-                "test".(time() - 10000000),
-                "http://localhost/mvco/index.php?page=checkout_error",
-                "http://localhost/mvco/index.php?page=checkout_accept"
-            );
-            $PayPalOrder->addItem("Test", "TestItem1", "PRD1", 100, 15, 1, "DIGITAL_GOODS");
-            $PayPalOrder->addItem("Test 2", "TestItem2", "PRD2", 50, 7.5, 2, "DIGITAL_GOODS");
-            $response = $PayPalOrder->createOrder();
-            $_SESSION["orderid"] = $response[1]->result->id;
-            \Utilities\Site::redirectTo($response[0]->href);
-            die();
+            $processPayment = true;
+
+            if (isset($_POST["removeOne"]) || isset($_POST["addOne"])) {
+                $productId = intval($_POST["productId"]);
+                $productoDisp = Cart::getProductoDisponible($productId);
+                $amount = isset($_POST["removeOne"]) ? -1 : 1;
+
+                if ($amount == 1) {
+                    if ($productoDisp["productStock"] - $amount >= 0) {
+                        Cart::addToAuthCart(
+                            $productId,
+                            Security::getUserId(),
+                            $amount,
+                            $productoDisp["productPrice"]
+                        );
+                    }
+                } else {
+                    Cart::addToAuthCart(
+                        $productId,
+                        Security::getUserId(),
+                        $amount,
+                        $productoDisp["productPrice"]
+                    );
+                }
+
+                // ✅ EDITADO: Reasignamos carretilla después de modificar
+                $carretilla = Cart::getAuthCart(Security::getUserId()) ?? [];
+                $processPayment = false;
+            }
+
+            if ($processPayment) {
+                try {
+                    $PayPalOrder = new \Utilities\Paypal\PayPalOrder(
+                        "test" . (time() - 10000000),
+                        "http://localhost:8080/NW/CopiaProyectoNW/index.php?page=Checkout_Error",
+                        "http://localhost:8080/NW/CopiaProyectoNW/index.php?page=Checkout_Accept"
+                    );
+
+                    if (isset($viewData["carretilla"]) && is_array($viewData["carretilla"])) {
+                        foreach ($viewData["carretilla"] as $producto) {
+                            $PayPalOrder->addItem(
+                                $producto["productName"],
+                                $producto["productDescription"],
+                                $producto["productId"],
+                                $producto["crrprc"],
+                                0,
+                                $producto["crrctd"],
+                                "DIGITAL_GOODS"
+                            );
+                        }
+                    }
+
+                    $PayPalRestApi = new \Utilities\PayPal\PayPalRestApi(
+                        \Utilities\Context::getContextByKey("PAYPAL_CLIENT_ID"),
+                        \Utilities\Context::getContextByKey("PAYPAL_CLIENT_SECRET"),
+                        strtolower(\Utilities\Context::getContextByKey("PAYPAL_CLIENT_ENV"))
+                    );
+
+                    $PayPalRestApi->getAccessToken();
+                    $response = $PayPalRestApi->createOrder($PayPalOrder);
+
+                    $_SESSION["orderid"] = $response->id;
+
+                    foreach ($response->links as $link) {
+                        if ($link->rel == "approve") {
+                            \Utilities\Site::redirectTo($link->href);
+                        }
+                    }
+                    die();
+                } catch (\Exception $e) {
+                    // Imprime el mensaje directamente para depuración
+                    die("❌ Error PayPal: " . $e->getMessage());
+                }
+            }
         }
 
+        // ✅ Esta parte arma el array de productos para la vista
+        $finalCarretilla = [];
+        $counter = 1;
+        $total = 0;
+
+        foreach ($carretilla as $prod) {
+            $prod["row"] = $counter;
+            $prod["subtotal"] = number_format($prod["crrprc"] * $prod["crrctd"], 2);
+            $total += $prod["crrprc"] * $prod["crrctd"];
+            $prod["crrprc"] = number_format($prod["crrprc"], 2);
+            $finalCarretilla[] = $prod;
+            $counter++;
+        }
+
+        // ✅ Asignamos los datos a la vista
+        $viewData["carretilla"] = $finalCarretilla;
+        $viewData["total"] = number_format($total, 2);
         \Views\Renderer::render("paypal/checkout", $viewData);
     }
 }
-?>
