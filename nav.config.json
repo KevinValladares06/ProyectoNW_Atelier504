@@ -29,14 +29,15 @@
       "id": "Menu_Funciones",
       "nav_url": "index.php?page=Funciones_Funciones",
       "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;Funciones"
-    }
-  ],
-  "private": [
+    },
     {
       "id":"Menu_PaymentCheckout",
       "nav_url": "index.php?page=Checkout_Checkout",
       "nav_label": "Carretilla de Compra"
-    },
+    }
+  ],
+  "private": [
+    
     {
       "id":"Menu_Maintenance_Categories",
       "nav_url": "index.php?page=Maintenance-Products-Categories",

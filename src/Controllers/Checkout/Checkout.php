@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace Controllers\Checkout;
 
 use Controllers\PublicController;
@@ -10,19 +12,22 @@ class Checkout extends PublicController
 {
     public function run(): void
     {
+        /*
+        1) Mostrar el listado de productos a facturar y los detalles y totales de la proforma.
+        2) Al dar click en Pagar
+            2.1) Crear una orden de Paypal con los productos de la proforma.
+            2.2) Redirigir al usuario a la página de Paypal para que complete el pago.
+        
+        */
         $viewData = array();
 
-        // ✅ EDITADO: Aseguramos que carretilla no sea null
-        $carretilla = Cart::getAuthCart(Security::getUserId()) ?? [];
-
+        $carretilla = Cart::getAuthCart(Security::getUserId());
         if ($this->isPostBack()) {
             $processPayment = true;
-
             if (isset($_POST["removeOne"]) || isset($_POST["addOne"])) {
                 $productId = intval($_POST["productId"]);
                 $productoDisp = Cart::getProductoDisponible($productId);
                 $amount = isset($_POST["removeOne"]) ? -1 : 1;
-
                 if ($amount == 1) {
                     if ($productoDisp["productStock"] - $amount >= 0) {
                         Cart::addToAuthCart(
@@ -40,63 +45,48 @@ class Checkout extends PublicController
                         $productoDisp["productPrice"]
                     );
                 }
-
-                // ✅ EDITADO: Reasignamos carretilla después de modificar
-                $carretilla = Cart::getAuthCart(Security::getUserId()) ?? [];
+                $carretilla = Cart::getAuthCart(Security::getUserId());
                 $processPayment = false;
             }
 
             if ($processPayment) {
-                try {
-                    $PayPalOrder = new \Utilities\Paypal\PayPalOrder(
-                        "test" . (time() - 10000000),
-                        "http://localhost:8080/NW/CopiaProyectoNW/index.php?page=Checkout_Error",
-                        "http://localhost:8080/NW/CopiaProyectoNW/index.php?page=Checkout_Accept"
+                $PayPalOrder = new \Utilities\Paypal\PayPalOrder(
+                    "test" . (time() - 10000000),
+                    "http://localhost:8080/NW/CopiaProyectoNW/index.php?page=Checkout_Error",
+                    "http://localhost:8080/NW/CopiaProyectoNW/index.php?page=Checkout_Accept"
+                );
+
+                foreach ((array)$carretilla as $producto) {
+                    $PayPalOrder->addItem(
+                        $producto["productName"],
+                        $producto["productDescription"],
+                        $producto["productId"],
+                        $producto["crrprc"],
+                        0,
+                        $producto["crrctd"],
+                        "DIGITAL_GOODS"
                     );
-
-                    if (isset($viewData["carretilla"]) && is_array($viewData["carretilla"])) {
-                        foreach ($viewData["carretilla"] as $producto) {
-                            $PayPalOrder->addItem(
-                                $producto["productName"],
-                                $producto["productDescription"],
-                                $producto["productId"],
-                                $producto["crrprc"],
-                                0,
-                                $producto["crrctd"],
-                                "DIGITAL_GOODS"
-                            );
-                        }
-                    }
-
-                    $PayPalRestApi = new \Utilities\PayPal\PayPalRestApi(
-                        \Utilities\Context::getContextByKey("PAYPAL_CLIENT_ID"),
-                        \Utilities\Context::getContextByKey("PAYPAL_CLIENT_SECRET"),
-                        strtolower(\Utilities\Context::getContextByKey("PAYPAL_CLIENT_ENV"))
-                    );
-
-                    $PayPalRestApi->getAccessToken();
-                    $response = $PayPalRestApi->createOrder($PayPalOrder);
-
-                    $_SESSION["orderid"] = $response->id;
-
-                    foreach ($response->links as $link) {
-                        if ($link->rel == "approve") {
-                            \Utilities\Site::redirectTo($link->href);
-                        }
-                    }
-                    die();
-                } catch (\Exception $e) {
-                    // Imprime el mensaje directamente para depuración
-                    die("❌ Error PayPal: " . $e->getMessage());
                 }
+
+                $PayPalRestApi = new \Utilities\PayPal\PayPalRestApi(
+                    \Utilities\Context::getContextByKey("PAYPAL_CLIENT_ID"),
+                    \Utilities\Context::getContextByKey("PAYPAL_CLIENT_SECRET")
+                );
+                $PayPalRestApi->getAccessToken();
+                $response = $PayPalRestApi->createOrder($PayPalOrder);
+
+                $_SESSION["orderid"] = $response->id;
+                foreach ($response->links as $link) {
+                    if ($link->rel == "approve") {
+                        \Utilities\Site::redirectTo($link->href);
+                    }
+                }
+                die();
             }
         }
-
-        // ✅ Esta parte arma el array de productos para la vista
         $finalCarretilla = [];
         $counter = 1;
         $total = 0;
-
         foreach ($carretilla as $prod) {
             $prod["row"] = $counter;
             $prod["subtotal"] = number_format($prod["crrprc"] * $prod["crrctd"], 2);
@@ -105,8 +95,6 @@ class Checkout extends PublicController
             $finalCarretilla[] = $prod;
             $counter++;
         }
-
-        // ✅ Asignamos los datos a la vista
         $viewData["carretilla"] = $finalCarretilla;
         $viewData["total"] = number_format($total, 2);
         \Views\Renderer::render("paypal/checkout", $viewData);
