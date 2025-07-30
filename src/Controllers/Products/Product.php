@@ -26,6 +26,7 @@ class Product extends PublicController
         "productDescription" => "",
         "productPrice" => 0,
         "productImgUrl" => "",
+        "productStock" => 0,
         "productStatus" => "ACT"
     ];
     private $product_xss_token = "";
@@ -77,6 +78,7 @@ class Product extends PublicController
             $this->product["productDescription"] = strval($_POST["productDescription"] ?? "");
             $this->product["productPrice"] = floatval($_POST["productPrice"] ?? "");
             $this->product["productImgUrl"] = strval($_POST["productImgUrl"] ?? "");
+            $this->product["productStock"] = intval($_POST["productStock"] ?? "");
             $this->product["productStatus"] = strval($_POST["productStatus"] ?? "");
 
             if (Validators::IsEmpty($this->product["productName"])) {
@@ -93,6 +95,10 @@ class Product extends PublicController
 
             if (Validators::IsEmpty($this->product["productImgUrl"])) {
                 $errors["productImgUrl_error"] = "La imagen del producto es requerida";
+            }
+
+            if ($this->product["productStock"] < 0) {
+                $errors["productStock_error"] = "El stock no puede ser negativo";
             }
 
             if (Validators::IsEmpty($this->product["productStatus"], ["ACT", "INA"])) {
@@ -135,6 +141,7 @@ class Product extends PublicController
             $this->product["productDescription"],
             $this->product["productPrice"],
             $this->product["productImgUrl"],
+            $this->product["productStock"],
             $this->product["productStatus"]
         );
         if ($result > 0) {
@@ -153,6 +160,7 @@ class Product extends PublicController
             $this->product["productDescription"],
             $this->product["productPrice"],
             $this->product["productImgUrl"],
+            $this->product["productStock"],
             $this->product["productStatus"]
         );
         if ($result > 0) {

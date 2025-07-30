@@ -185,6 +185,24 @@
 .order-1 {
   order: 1;
 }
+a.btn-add {
+    background-color: #28a745;
+    color: white;
+    padding: 0.6em 1.2em;
+    font-size: 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+a.btn-add:hover{
+    background-color : #28a745;
+    transform: scale(1.05);
+}
+
 @media (min-width:568px) {
   .container-m {
     max-width: 1024px !important;
@@ -992,6 +1010,23 @@ a.link::after {
   color: #000;
   margin-left: 0.2rem;
 }
+a.btn-add {
+    background-color: #28a745;
+    color: white;
+    padding: 0.6em 1.2em;
+    font-size: 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+a.btn-add:hover{
+    background-color : #28a745;
+    transform: scale(1.05);
+}
 .WWList table {
   width: 100%;
   margin: 0px;
@@ -1067,6 +1102,27 @@ a.link::after {
   color: #ffffff;
   width: 100%;
 }
+
+a.btn-add {
+    background-color: #28a745; 
+    color: white;
+    padding: 0.6em 1.2em;
+    font-size: 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+a.btn-add:hover{
+    background-color : #28a745;
+    transform: scale(1.05);
+}
+
+
+
 @media (min-width:568px) {
   .hero {
     height: 640px;

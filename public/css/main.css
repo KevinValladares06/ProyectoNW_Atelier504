@@ -1054,6 +1054,8 @@ a.link::after {
   color: #ffffff;
   width: 100%;
 }
+
+
 @media (min-width:568px) {
   .hero {
     height: 640px;

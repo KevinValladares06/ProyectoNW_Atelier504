@@ -1,7 +1,8 @@
-<h1>Trabajar con Productos</h1>
+<h1>Productos</h1>
 <section class="grid">
   <div class="row">
     <form class="col-12 col-m-8" action="index.php" method="get">
+      <link rel="stylesheet" href="public/css/product.css" />
       <div class="flex align-center">
         <div class="col-8 row">
           <input type="hidden" name="page" value="Products_Products">
@@ -22,63 +23,51 @@
   </div>
 </section>
 <section class="WWList">
-  <table>
+  <table class="col-12 table striped hover">
     <thead>
       <tr>
-        <th>
-          {{ifnot OrderByProductId}}
-          <a href="index.php?page=Products_Products&orderBy=productId&orderDescending=0">Id <i class="fas fa-sort"></i></a>
-          {{endifnot OrderByProductId}}
-          {{if OrderProductIdDesc}}
-          <a href="index.php?page=Products_Products&orderBy=clear&orderDescending=0">Id <i class="fas fa-sort-down"></i></a>
-          {{endif OrderProductIdDesc}}
-          {{if OrderProductId}}
-          <a href="index.php?page=Products_Products&orderBy=productId&orderDescending=1">Id <i class="fas fa-sort-up"></i></a>
-          {{endif OrderProductId}}
-        </th>
-        <th class="left">
-          {{ifnot OrderByProductName}}
-          <a href="index.php?page=Products_Products&orderBy=productName&orderDescending=0">Nombre <i class="fas fa-sort"></i></a>
-          {{endifnot OrderByProductName}}
-          {{if OrderProductNameDesc}}
-          <a href="index.php?page=Products_Products&orderBy=clear&orderDescending=0">Nombre <i class="fas fa-sort-down"></i></a>
-          {{endif OrderProductNameDesc}}
-          {{if OrderProductName}}
-          <a href="index.php?page=Products_Products&orderBy=productName&orderDescending=1">Nombre <i class="fas fa-sort-up"></i></a>
-          {{endif OrderProductName}}
-        </th>
-        <th>
-          {{ifnot OrderByProductPrice}}
-          <a href="index.php?page=Products_Products&orderBy=productPrice&orderDescending=0">Precio <i class="fas fa-sort"></i></a>
-          {{endifnot OrderByProductPrice}}
-          {{if OrderProductPriceDesc}}
-          <a href="index.php?page=Products_Products&orderBy=clear&orderDescending=0">Precio <i class="fas fa-sort-down"></i></a>
-          {{endif OrderProductPriceDesc}}
-          {{if OrderProductPrice}}
-          <a href="index.php?page=Products_Products&orderBy=productPrice&orderDescending=1">Precio <i class="fas fa-sort-up"></i></a>
-          {{endif OrderProductPrice}}
-        </th>
+        <th>Imagen</th>
+        <th>Id</th>
+        <th>Producto</th>
+        <th>Descripción</th>
+        <th class="right">Precio</th>
+        <th>Stock</th>
         <th>Estado</th>
-        <th><a href="index.php?page=Products-Product&mode=INS">Nuevo</a></th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       {{foreach products}}
       <tr>
+        <td><img src="{{productImgUrl}}" alt="img de {{productName}}" style="width:60px;height:auto;border-radius:4px;" /></td>
         <td>{{productId}}</td>
-        <td> <a class="link" href="index.php?page=Products-Product&mode=DSP&id={{productId}}">{{productDescription}}</a>
-        </td>
-        <td class="right">
-          {{productPrice}}
-        </td>
+        <td>{{productName}}</td>
+        <td>{{productDescription}}</td>
+        <td class="right">L. {{productPrice}}</td>
+        <td class="center">{{productStock}}</td>
         <td class="center">{{productStatusDsc}}</td>
         <td class="center">
-          <a href="index.php?page=Products-Product&mode=UPD&id={{productId}}">Editar</a>
-          &nbsp;
-          <a href="index.php?page=Products-Product&mode=DEL&id={{productId}}">Eliminar</a>
+          <a class="btn btn-icon" href="index.php?page=Products-Product&mode=DSP&id={{productId}}" title="Ver">
+            👁️
+          </a>
+          <a class="btn btn-icon" href="index.php?page=Products-Product&mode=UPD&id={{productId}}" title="Editar">
+            ✏️
+          </a>
+          <a class="btn btn-icon delete" href="index.php?page=Products-Product&mode=DEL&id={{productId}}" title="Eliminar">
+            🗑️
+          </a>
         </td>
       </tr>
       {{endfor products}}
+
+      <!-- Fila para agregar nuevo -->
+      <tr>
+        <td colspan="8" class="center">
+          <a class="btn-add" href="index.php?page=Products-Product&mode=INS">
+            Añadir nuevo producto
+          </a>
+        </td>
+      </tr>
     </tbody>
   </table>
   {{pagination}}

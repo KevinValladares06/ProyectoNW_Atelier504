@@ -9,7 +9,7 @@
           <input class="col-12 col-m-9" readonly disabled type="text" name="productIdD" id="productIdD" placehoder="Código" value="{{productId}}" />
           <input type="hidden" name="mode" value="{{~mode}}" />
           <input type="hidden" name="productId" value="{{productId}}" />
-          <input type="hidden" name="token" value="{{~product_xss_token}}" />
+          <input type="hidden" name="product_xss_token" value="{{~product_xss_token}}" />
         </div>
         <div class="row my-2 align-center">
           <label class="col-12 col-m-3" for="productName">Producto</label>
@@ -47,6 +47,16 @@
           </div>
           {{endif productImgUrl_error}}
         </div>
+          <div class="row my-2 align-center">
+          <label class="col-12 col-m-3" for="productStock">Stock</label>
+          <input class="col-12 col-m-9" {{~readonly}} type="number" name="productStock" id="productStock" placeholder="Cantidad en inventario" value="{{productStock}}" />
+          {{if productStock_error}}
+          <div class="col-12 col-m-9 offset-m-3 error">
+            {{productStock_error}}
+          </div>
+          {{endif productStock_error}}
+        </div>
+
         <div class="row my-2 align-center">
           <label class="col-12 col-m-3" for="productStatus">Estado</label>
           <select name="productStatus" id="productStatus" class="col-12 col-m-9" {{if ~readonly}} readonly disabled {{endif ~readonly}}>

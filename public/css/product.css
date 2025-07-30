@@ -1,0 +1,17 @@
+.btn-add {
+  background-color: #28a745;
+  color: white;
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-add:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
