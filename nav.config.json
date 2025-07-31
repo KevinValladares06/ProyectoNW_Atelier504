@@ -5,11 +5,15 @@
       "nav_url": "index.php?page=Sec_Login",
       "nav_label":"<i class=\"fas fa-sign-in-alt\"></i>&nbsp;Iniciar Sesión"
     },
-     {
+    {
       "id": "Menu_SignUp",
       "nav_url": "index.php?page=Sec_Register",
       "nav_label":"<i class=\"fas fa-sign-in-alt\"></i>&nbsp;Crear Cuenta"
-    },
+    }
+    
+  ],
+  "private": [
+    
     {
       "id": "Menu_Products",
       "nav_url": "index.php?page=Products_Products",
@@ -34,14 +38,6 @@
       "id":"Menu_PaymentCheckout",
       "nav_url": "index.php?page=Checkout_Checkout",
       "nav_label": "Carretilla de Compra"
-    }
-  ],
-  "private": [
-    
-    {
-      "id":"Menu_Maintenance_Categories",
-      "nav_url": "index.php?page=Maintenance-Products-Categories",
-      "nav_label": "Categorías"
     }
   ]
 }

@@ -34,3 +34,25 @@ CREATE TABLE `carretillaanon` (
     KEY `productId_idx` (`productId`),
     CONSTRAINT `carretillaanon_prd_key` FOREIGN KEY (`productId`) REFERENCES `products` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
+
+CREATE TABLE pedidos (
+    pedidoId INT AUTO_INCREMENT NOT NULL,
+    usercod BIGINT(10) NOT NULL,
+    fchpedido DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    total DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    PRIMARY KEY (pedidoId),
+    CONSTRAINT pedidos_usr_key FOREIGN KEY (usercod) REFERENCES usuario (usercod) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE detalle_pedidos (
+    detalleId INT AUTO_INCREMENT NOT NULL,
+    pedidoId INT NOT NULL,
+    productoId INT(11) NOT NULL,
+    cantidad INT NOT NULL,
+    precio_unitario DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (detalleId),
+    INDEX idx_pedidoId (pedidoId),
+    INDEX idx_productoId (productoId),
+    CONSTRAINT fk_pedidoId FOREIGN KEY (pedidoId) REFERENCES pedidos (pedidoId) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT fk_productoId FOREIGN KEY (productoId) REFERENCES products (productId) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;

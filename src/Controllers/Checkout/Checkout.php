@@ -12,13 +12,7 @@ class Checkout extends PublicController
 {
     public function run(): void
     {
-        /*
-        1) Mostrar el listado de productos a facturar y los detalles y totales de la proforma.
-        2) Al dar click en Pagar
-            2.1) Crear una orden de Paypal con los productos de la proforma.
-            2.2) Redirigir al usuario a la página de Paypal para que complete el pago.
-        
-        */
+
         $viewData = array();
 
         $carretilla = Cart::getAuthCart(Security::getUserId());

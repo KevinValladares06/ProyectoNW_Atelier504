@@ -52,7 +52,6 @@ abstract class Table
         PDO::PARAM_STR (integer)
         Representa el tipo de dato CHAR, VARCHAR de SQL, u otro tipo de datos de cadena.
          */
-
     }
 
     protected static function obtenerRegistros($sqlstr, $params, &$conn = null)
@@ -64,8 +63,8 @@ abstract class Table
             $pConn = self::getConn();
         }
         $query = $pConn->prepare($sqlstr);
-        foreach ($params as $key=>&$value) {
-            $query->bindParam(":".$key, $value, self::getBindType($value));
+        foreach ($params as $key => &$value) {
+            $query->bindParam(":" . $key, $value, self::getBindType($value));
         }
         $query->execute();
         $query->setFetchMode(\PDO::FETCH_ASSOC);
@@ -120,5 +119,3 @@ abstract class Table
         }
     }
 }
-
-?>
