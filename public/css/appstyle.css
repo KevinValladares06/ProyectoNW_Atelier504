@@ -185,24 +185,6 @@
 .order-1 {
   order: 1;
 }
-a.btn-add {
-    background-color: #28a745;
-    color: white;
-    padding: 0.6em 1.2em;
-    font-size: 1rem;
-    border-radius: 6px;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-a.btn-add:hover{
-    background-color : #28a745;
-    transform: scale(1.05);
-}
-
 @media (min-width:568px) {
   .container-m {
     max-width: 1024px !important;
@@ -731,6 +713,36 @@ body {
   padding: 0px;
   height: 100%;
 }
+
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.2rem 0.2rem;
+  background-color: #000; /* O tu color de fondo */
+  color: white;
+}
+
+header .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+header .brand .logo img {
+  height: 50px;
+  width: 60px;
+  object-fit: contain;
+  margin-right: 1275px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+
 header {
   position: fixed;
   top: 0px;
@@ -739,7 +751,7 @@ header {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background-color: #bb1900;
+  background-color: #000000; /*color navbar*/
   color: #ffffff;
   padding: 0px;
   flex-wrap: wrap;
@@ -752,14 +764,16 @@ header h1 {
   padding: 0.75rem 1rem;
   font-size: 1.5rem;
 }
+
 main {
   position: relative;
   margin-top: 52px;
   padding: 1em;
   min-height: calc(100vh - 102px);
 }
+/*
 footer {
-  background-color: #bb1900;
+  background-color: #000000;
   color: #ffffff;
   display: flex;
   justify-content: center;
@@ -767,6 +781,53 @@ footer {
   padding: 1rem;
   z-index: 1010;
 }
+*/
+
+
+footer {
+  background-color: #000000;
+  color: #ffffff;
+  z-index: 1010;
+  padding: 1rem 0;
+  /* Añade un poco de padding vertical al footer completo */
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Una columna por defecto para móviles */
+  gap: 1rem;
+  /* Espacio entre las columnas */
+  width: 100%;
+  max-width: 1200px;
+  /* **1. Define el ancho máximo del contenido de tus columnas.** */
+  margin: 0 auto;
+  /* **2. Centra el bloque de contenido (incluyendo las columnas) horizontalmente.** */
+  padding: 0 1rem;
+  /* **3. Añade padding a los lados para que el contenido no toque los bordes y se vea centrado dentro del `max-width`.** */
+  align-items: start;
+  /* Alinea los ítems al inicio de cada celda verticalmente */
+  text-align: center;
+  /* Centrar texto por defecto en móvil */
+}
+
+.footer-content p {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  /* Asegura que los párrafos sean blancos */
+}
+
+.footer-content a {
+  color: #ffffff !important; 
+  /* Asegura que los enlaces (URLs) sean blancos */
+  text-decoration: none;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}
+
 header .username {
   margin-left: auto;
   margin-right: 1rem;
@@ -785,6 +846,7 @@ header .username a {
   }
 }
 header nav {
+  margin-bottom: 0px;
   position: fixed;
   left: 0px;
   width: 100vw;
@@ -792,7 +854,7 @@ header nav {
   bottom: 0px;
   height: calc(100% - 51px);
   transform: translateX(-100vw);
-  background-color: #bb1900;
+  background-color: #000000;
   color: #ffffff;
   transition: transform 250ms ease-in-out;
   z-index: 1000;
@@ -808,6 +870,8 @@ header nav ul {
   margin: 0px;
   border-top: 1px solid #ffffff;
 }
+
+
 header ul li {
   list-style: none;
   cursor: pointer;
@@ -873,12 +937,18 @@ header input[type=checkbox]:checked ~ .menu_toggle_icon > .dgn.pt-2 {
   transform: rotate(-135deg);
   margin-top: -9px;
 }
+
 @media (min-width:568px) {
   header nav {
     width: 380px;
     transform: translateX(-380px);
   }
 }
+
+
+
+
+
 label {
   font-weight: 700;
 }
@@ -1010,23 +1080,6 @@ a.link::after {
   color: #000;
   margin-left: 0.2rem;
 }
-a.btn-add {
-    background-color: #28a745;
-    color: white;
-    padding: 0.6em 1.2em;
-    font-size: 1rem;
-    border-radius: 6px;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-a.btn-add:hover{
-    background-color : #28a745;
-    transform: scale(1.05);
-}
 .WWList table {
   width: 100%;
   margin: 0px;
@@ -1103,25 +1156,28 @@ a.btn-add:hover{
   width: 100%;
 }
 
-a.btn-add {
-    background-color: #28a745; 
-    color: white;
-    padding: 0.6em 1.2em;
-    font-size: 1rem;
-    border-radius: 6px;
+.cart-button {
+    position: relative;
+    font-size: 22px;
+    color: #ffffff !important;
+    margin-left: 20px;
     text-decoration: none;
-    display: inline-block;
-    font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-a.btn-add:hover{
-    background-color : #28a745;
-    transform: scale(1.05);
+.cart-button:hover {
+    color: #5e5859 !important;
 }
 
-
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: #e63946;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
 
 @media (min-width:568px) {
   .hero {
@@ -1134,3 +1190,27 @@ a.btn-add:hover{
     width: 320px;
   }
 }
+
+
+
+a.btn-add {
+    background-color: #000000; 
+    color: rgb(255, 255, 255) !important;
+    padding: 0.6em 1.2em;
+    font-size: 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(2, 101, 166, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+a.btn-add:hover{
+    background-color : #0d7195c2;
+    transform: scale(1.05);
+    color: rgb(255, 255, 255);
+}
+
+
+

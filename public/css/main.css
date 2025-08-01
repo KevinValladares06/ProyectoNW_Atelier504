@@ -1067,3 +1067,411 @@ a.link::after {
     width: 320px;
   }
 }
+
+
+
+/* ==========================================================================
+   Sección "Acerca de Nosotros" 
+   ========================================================================== */
+
+.acercadenosotros-page-container {
+    max-width: 1000px;
+    margin: 2.5rem auto;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.acercadenosotros-page-container h1 {
+    color: #000000;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.acercadenosotros-page-container p {
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    color: #444444;
+    font-size: 1.05rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+.acercadenosotros-page-container a {
+    color: #000000; 
+    font-weight: bold;
+}
+
+.acercadenosotros-page-container a:hover {
+    text-decoration: underline;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem; 
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 0 1rem;
+}
+
+.history-card,
+.team-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    padding: 0;
+    flex: 1;
+    min-width: 300px;
+    max-width: 45%;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+    transition: 0.3s;
+}
+
+.history-card:hover,
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-image-placeholder {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 4px solid #000000;
+    box-sizing: border-box;
+    border-radius: 15px 15px 0 0; 
+}
+
+.card-content {
+    padding: 1.8rem;
+}
+
+.history-card h2,
+.team-card h2 {
+    color: #000000;
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.history-card p,
+.team-card p {
+    font-size: 0.95rem;
+    text-align: justify;
+    color: #555555;
+    margin-bottom: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .history-card,
+    .team-card {
+        max-width: 90%;
+        margin-top: 1rem;
+        padding: 0;
+    }
+
+    .card-image-placeholder {
+        height: 150px;
+    }
+
+    .acercadenosotros-page-container {
+        padding: 0 0.5rem;
+        margin: 1rem auto;
+    }
+
+    .acercadenosotros-page-container p {
+        padding: 0 1rem;
+    }
+
+    .card-content {
+        padding: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Sección de Contacto
+   ========================================================================== */
+.contactanos-page-container {
+    max-width: 1200px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.contactanos-page-container .grid.row:first-child {
+    justify-content: center;
+}
+
+.contactanos-page-container h1 {
+    color: #000000;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 1.8rem;
+}
+
+.contactanos-page-container .grid.row.align-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3.5rem;
+    margin-top: 2rem;
+}
+
+.contactanos-page-container .col-l-6,
+.contactanos-page-container .col-m-6,
+.contactanos-page-container .col-12 {
+    flex: 1 1 45%;
+    max-width: 45%;
+    box-sizing: border-box;
+    padding: 0;
+    min-width: 380px;
+}
+
+.contactanos-page-container .formulario {
+    background-color: #ffffff;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    border: 1px solid #d0d0d0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contactanos-page-container .formulario h2 {
+    font-size: 2.4rem;
+    color: #000000;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.contactanos-page-container .formulario form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.contactanos-page-container .formulario form .form-group {
+    margin-bottom: 1.8rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.contactanos-page-container .formulario form .form-group label {
+    display: block;
+    margin-bottom: 1rem;
+    color: #333333;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.contactanos-page-container .formulario form .form-group input[type="text"],
+.contactanos-page-container .formulario form .form-group input[type="email"],
+.contactanos-page-container .formulario form .form-group textarea {
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    border: 1px solid #b0b0b0;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contactanos-page-container .formulario form .form-group textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+.contactanos-page-container .formulario form .btn-enviar {
+    background-color: #000000;
+    color: #ffffff;
+    border: solid 2px #000000;
+    padding: 1.2rem 3rem;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    margin-top: 2.5rem;
+    align-self: center;
+    width: auto;
+    min-width: 200px;
+}
+
+.contactanos-page-container .formulario form .btn-enviar:hover {
+    background-color: #991500;
+    box-shadow: 0 8px 20px rgba(187,25,0,0.4);
+    transform: translateY(-2px);
+}
+
+.contactanos-page-container .info-contacto {
+    background-color: #fefefe;
+    padding: 3rem;
+    border-radius: 10px;
+    border: 1px solid #d0d0d0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    color: #444444;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contactanos-page-container .info-contacto h2 {
+    font-size: 2.4rem;
+    margin-bottom: 2.5rem;
+    color: #000000;
+    text-align: center;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.contactanos-page-container .info-contacto p {
+    line-height: 1.9;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #555555;
+    text-align: justify;
+}
+
+.contactanos-page-container .info-contacto .info-contacto-subgrid {
+    margin-top: 2.5rem;
+    border-top: 1px dashed #aaaaaa;
+    padding-top: 2.5rem;
+}
+
+.contactanos-page-container .info-contacto .info-contacto-subgrid h3 {
+    font-size: 1.8rem;
+    color: #000000;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 0.6rem;
+}
+
+.contactanos-page-container .info-contacto .info-contacto-subgrid p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.contactanos-page-container .info-contacto .info-contacto-subgrid p strong {
+    color: #333333;
+}
+
+.contactanos-page-container .info-contacto .info-contacto-subgrid a {
+    color: #000000;
+    font-weight: normal;
+}
+
+.contactanos-page-container .info-contacto .info-contacto-subgrid a:hover {
+    text-decoration: underline;
+}
+
+.contactanos-page-container .info-contacto .info-contacto-subgrid address {
+    font-style: normal;
+    line-height: 1.7;
+    color: #555555;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 992px) {
+    .contactanos-page-container .grid.row.align-center {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+    .contactanos-page-container .col-l-6,
+    .contactanos-page-container .col-m-6,
+    .contactanos-page-container .col-12 {
+        flex-basis: 95%;
+        max-width: 95%;
+        min-width: unset;
+    }
+    .contactanos-page-container .formulario,
+    .contactanos-page-container .info-contacto {
+        padding: 2.5rem;
+    }
+    .contactanos-page-container h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+    .contactanos-page-container .formulario h2,
+    .contactanos-page-container .info-contacto h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    .contactanos-page-container .formulario form .form-group input[type="text"],
+    .contactanos-page-container .formulario form .form-group input[type="email"],
+    .contactanos-page-container .formulario form .form-group textarea {
+        font-size: 1.1rem;
+        padding: 1rem;
+    }
+    .contactanos-page-container .formulario form .form-group textarea {
+        min-height: 140px;
+    }
+    .contactanos-page-container .formulario form .btn-enviar {
+        padding: 1rem 2.5rem;
+        font-size: 1.2rem;
+    }
+    .contactanos-page-container .info-contacto p {
+        font-size: 1.1rem;
+    }
+    .contactanos-page-container .info-contacto .info-contacto-subgrid h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .contactanos-page-container {
+        padding: 0 1rem;
+    }
+    .contactanos-page-container .formulario,
+    .contactanos-page-container .info-contacto {
+        padding: 1.8rem;
+    }
+    .contactanos-page-container h1 {
+        font-size: 2rem;
+    }
+    .contactanos-page-container .formulario h2,
+    .contactanos-page-container .info-contacto h2 {
+        font-size: 1.7rem;
+    }
+    .contactanos-page-container .formulario form .form-group {
+        max-width: 100%;
+    }
+    .contactanos-page-container .formulario form .form-group textarea {
+        min-height: 120px;
+    }
+}

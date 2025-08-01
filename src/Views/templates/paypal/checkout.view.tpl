@@ -35,12 +35,7 @@
   <div class="row">
     <form action="index.php?page=checkout_checkout" method="post" class="col-12 right">
       <button type="submit">Ordenar</button>
-      <a href="index.php?page=Historial_Historial" class="btn-add">
-      Ver Historial de Pedidos 🧾
-      </a>
     </form>
-      
-
   </div>
 </section>
 

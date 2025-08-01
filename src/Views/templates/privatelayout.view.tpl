@@ -25,7 +25,13 @@
       <div class="hmb hrz"></div>
       <div class="hmb dgn pt-2"></div>
     </label>
-    <h1>{{SITE_TITLE}}</h1>
+    <div class="brand">
+      <h1>{{SITE_TITLE}}</h1>
+      <div class="logo">
+      <img src="{{BASE_DIR}}/public/imgs/logoatelier.jpg" alt="Atelier 504 Logo">
+    </div>
+    
+  </div>
     <nav id="menu">
       <ul>
         <li><a href="index.php?page={{PRIVATE_DEFAULT_CONTROLLER}}"><i class="fas fa-home"></i>&nbsp;Inicio</a></li>
@@ -35,8 +41,12 @@
         <li><a href="index.php?page=sec_logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Salir</a></li>
       </ul>
     </nav>
+    <a href="index.php?page=checkout_checkout" class="cart-button">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count">{{CART_ITEMS}}</span>
+    </a>
     {{with login}}
-    <span>{{if ~CART_ITEMS}}{{~CART_ITEMS}}{{endif ~CART_ITEMS}}</span>
+    <!--<span>{{if ~CART_ITEMS}}{{~CART_ITEMS}}{{endif ~CART_ITEMS}}</span>-->
     <span class="username">{{userName}} <a href="index.php?page=sec_logout"><i class="fas fa-sign-out-alt"></i></a></span>
     {{endwith login}}
   </header>

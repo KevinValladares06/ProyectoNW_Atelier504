@@ -64,7 +64,7 @@
         </th>
         
         <th>Estado</th>
-        <th><a href="index.php?page=Users_User&mode=INS">Nuevo</a></th>
+        <!--<th><a href="index.php?page=Users_User&mode=INS">Nuevo</a></th>-->
       </tr>
     </thead>
    <tbody>
