@@ -1043,8 +1043,8 @@ table a.btn {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  border: 1px solid #bb1900;
-  background-color: #ff4022;
+  border: 1px solid #0d0d0d;
+  background-color: #bf0000ca;
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -1204,6 +1204,7 @@ a.btn-add {
     font-weight: 600;
     box-shadow: 0 2px 4px rgba(2, 101, 166, 0.15);
     transition: background 0.3s ease, transform 0.2s ease;
+    text-align: right !important;
 }
 
 a.btn-add:hover{
@@ -1211,6 +1212,5 @@ a.btn-add:hover{
     transform: scale(1.05);
     color: rgb(255, 255, 255);
 }
-
 
 

@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Controllers\Checkout;
 
 use Controllers\PublicController;
@@ -12,16 +10,22 @@ class Checkout extends PublicController
 {
     public function run(): void
     {
-
         $viewData = array();
 
+        // Obtener carrito del usuario autenticado
         $carretilla = Cart::getAuthCart(Security::getUserId());
+
         if ($this->isPostBack()) {
             $processPayment = true;
+
+            // ✅ Manejar eliminación total de un producto del carrito
+
+            // Incrementar o disminuir cantidad
             if (isset($_POST["removeOne"]) || isset($_POST["addOne"])) {
                 $productId = intval($_POST["productId"]);
                 $productoDisp = Cart::getProductoDisponible($productId);
                 $amount = isset($_POST["removeOne"]) ? -1 : 1;
+
                 if ($amount == 1) {
                     if ($productoDisp["productStock"] - $amount >= 0) {
                         Cart::addToAuthCart(
@@ -43,6 +47,7 @@ class Checkout extends PublicController
                 $processPayment = false;
             }
 
+            // Crear orden de pago (si no se estaba actualizando el carrito)
             if ($processPayment) {
                 $PayPalOrder = new \Utilities\Paypal\PayPalOrder(
                     "test" . (time() - 10000000),
@@ -78,6 +83,8 @@ class Checkout extends PublicController
                 die();
             }
         }
+
+        // Construir vista del carrito
         $finalCarretilla = [];
         $counter = 1;
         $total = 0;
@@ -89,6 +96,7 @@ class Checkout extends PublicController
             $finalCarretilla[] = $prod;
             $counter++;
         }
+
         $viewData["carretilla"] = $finalCarretilla;
         $viewData["total"] = number_format($total, 2);
         \Views\Renderer::render("paypal/checkout", $viewData);

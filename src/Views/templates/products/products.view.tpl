@@ -23,6 +23,17 @@
   </div>
 </section>
 <section class="WWList">
+ <tr>
+  <td colspan="8">
+    <div style="display: flex; justify-content: flex-end;">
+      <a class="btn-add" href="index.php?page=Products-Product&mode=INS">
+        Añadir nuevo producto
+      </a>
+      
+    </div>
+  </td>
+</tr>
+<br>
   <table class="col-12 table striped hover">
     <thead>
       <tr>
@@ -30,7 +41,7 @@
         <th>Id</th>
         <th>Producto</th>
         <th>Descripción</th>
-        <th class="right">Precio</th>
+        <th>Precio</th>
         <th>Stock</th>
         <th>Estado</th>
         <th>Acciones</th>
@@ -42,7 +53,7 @@
         <td><img src="{{productImgUrl}}" alt="img de {{productName}}" style="width:60px;height:auto;border-radius:4px;" /></td>
         <td>{{productId}}</td>
         <td>{{productName}}</td>
-        <td>{{productDescription}}</td>
+        <td class="descripcion-limitada">{{productDescription}}</td>
         <td class="right">L. {{productPrice}}</td>
         <td class="center">{{productStock}}</td>
         <td class="center">{{productStatusDsc}}</td>
@@ -61,13 +72,7 @@
       {{endfor products}}
 
       <!-- Fila para agregar nuevo -->
-      <tr>
-        <td colspan="8" class="center">
-          <a class="btn-add" href="index.php?page=Products-Product&mode=INS">
-            Añadir nuevo producto
-          </a>
-        </td>
-      </tr>
+      
     </tbody>
   </table>
   {{pagination}}
