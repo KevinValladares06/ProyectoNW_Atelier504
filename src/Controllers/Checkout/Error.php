@@ -24,7 +24,7 @@ class Error extends PublicController
                     timer: 3000,
                     timerProgressBar: true,
                     didClose: () => {
-                        window.location.href = "http://localhost:8080/NW/CopiaProyectoNW/index.php?page=Checkout_Checkout";
+                        window.location.href = "http://localhost:8080/NW/ProyectoNW_Atelier504/index.php?page=Checkout_Checkout";
                     }
                 });
             </script>

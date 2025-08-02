@@ -3,40 +3,35 @@
     {
       "id": "Menu_SignIn",
       "nav_url": "index.php?page=Sec_Login",
-      "nav_label":"<i class=\"fas fa-sign-in-alt\"></i>&nbsp;Iniciar Sesión"
+      "nav_label": "<i class=\"fas fa-sign-in-alt\"></i>&nbsp;Iniciar Sesión"
     },
     {
       "id": "Menu_SignUp",
       "nav_url": "index.php?page=Sec_Register",
-      "nav_label":"<i class=\"fa-solid fa-plus\"></i>&nbsp;Crear Cuenta"
+      "nav_label": "<i class=\"fa-solid fa-plus\"></i>&nbsp;Crear Cuenta"
     },
     {
-      "id": "Menu_Products",
-      "nav_url": "index.php?page=Products_Products",
-      "nav_label":"<i class=\"fa-solid fa-shirt\"></i>&nbsp;Productos"
-      
-    },
-    {
-      "id": "Menu_Users",
-      "nav_url": "index.php?page=Users_Users",
-      "nav_label":"<i class=\"fa-solid fa-user\"></i>&nbsp;Usuarios"
-     
-    },
-    {
-      "id": "Menu_Roles",
-      "nav_url": "index.php?page=Roles_Roles",
-      "nav_label":"<i class=\"fa-regular fa-address-book\"></i>&nbsp;Roles"
-     
-    },
-    {
-      "id": "Menu_Funciones",
-      "nav_url": "index.php?page=Funciones_Funciones",
-      "nav_label":"<i class=\"fa-solid fa-file-pen\"></i>&nbsp;Funciones"
-      
-    }
+        "id": "Menu_Users",
+        "nav_url": "index.php?page=Users_Users",
+        "nav_label": "<i class=\"fa-solid fa-user\"></i>&nbsp;Usuarios"
+      },
+      {
+        "id": "Menu_Roles",
+        "nav_url": "index.php?page=Roles_Roles",
+        "nav_label": "<i class=\"fa-regular fa-address-book\"></i>&nbsp;Roles"
+      },
+      {
+        "id": "Menu_Funciones",
+        "nav_url": "index.php?page=Funciones_Funciones",
+        "nav_label": "<i class=\"fa-solid fa-file-pen\"></i>&nbsp;Funciones"
+      },
+      {
+        "id": "Menu_Products",
+        "nav_url": "index.php?page=Products_Products",
+        "nav_label": "<i class=\"fa-solid fa-shirt\"></i>&nbsp;Productos"
+      }
   ],
-  "private": [
+  "private": {
     
-    
-  ]
+  }
 }

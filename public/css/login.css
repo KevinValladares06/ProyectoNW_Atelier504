@@ -1,0 +1,136 @@
+.login-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.login-wrapper {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 90%;
+  max-width: 1100px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+  
+}
+
+.login-image-section {
+  width: 50%;
+  background: url('../imgs/imglogin.png') no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.login-image-section .overlay {
+  color: #fff;
+  text-align: center;
+  backdrop-filter: brightness(0.5);
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.brand-subtitle {
+  font-size: 1rem;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+.contact-info {
+  font-weight: bold;
+  margin-top: 80px;
+}
+
+.contact-details {
+  font-size: 0.9rem;
+}
+
+.login-form-section {
+  width: 50%;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-title {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  background: #f0f0f0;
+  font-size: 1rem;
+  outline: none;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.general {
+  margin-top: 15px;
+}
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.login-btn {
+  background-color: #16281e;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #0c1e15;
+}
+
+.signup-msg {
+  font-size: 0.9rem;
+  margin-top: 40px;
+  color: #999;
+}
+
+.signup-msg a {
+  color: #333;
+  text-decoration: underline;
+}
+
+.sr-only {
+  position: absolute;
+  left: -9999px;
+}

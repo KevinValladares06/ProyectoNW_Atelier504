@@ -980,9 +980,9 @@ input.width-full {
   width: 100%;
 }
 button {
-  background-color: #999999;
+  background-color: #bf0000ca;
   color: #ffffff;
-  border: solid 2px #999999;
+  border: solid 2px #000000;
   padding: 0.75rem;
   font-size: 1rem;
   font-weight: 700;

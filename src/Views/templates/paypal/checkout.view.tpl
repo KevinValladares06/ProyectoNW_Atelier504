@@ -6,7 +6,7 @@
   <section class="grid">
     <!-- Encabezados -->
     <div class="row border-b py-3 px-4" style="font-weight: 600; background-color: #f5f5f5;">
-      <span class="col-1">#</span>
+      <span class="col-1">No.</span>
       <span class="col-4">Item</span>
       <span class="col-2 right">Precio</span>
       <span class="col-3 center">Cantidad</span>
